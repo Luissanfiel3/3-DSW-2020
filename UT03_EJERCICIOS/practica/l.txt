@@ -1,0 +1,9 @@
+mysql
+
+CREATE DATABASE pruebas_db;
+
+CREATE USER prueba_user@'&' IDENTTIFIED BY "pruebas_password";
+Grant all privileges on pruebas_db.* to prueba_user@'%';
+
+mysql -u pruebas_user -p pruebas_db
+

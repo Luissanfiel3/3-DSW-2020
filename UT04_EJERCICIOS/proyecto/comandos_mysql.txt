@@ -1,0 +1,18 @@
+CREATE TABLE Usuarios (
+id INT(6)  AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(50) NOT NULL,
+edad INT(3) NOT NULL,
+telefono VARCHAR(50) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO Usuarios (id,nombre,edad,telefono,email,created_at) VALUES (1,'Luis José Sanfiel Orsini',25,'123456789','luisjosesanfiel@gmail.com',CURRENT_TIMESTAMP);
+
+INSERT INTO Usuarios (id,nombre,edad,telefono,email,created_at) VALUES (10,'Luis José ',25,'00012345678','luisjosesan@gmail.com',CURRENT_TIMESTAMP);
+INSERT INTO Usuarios (id,nombre,edad,telefono,email,created_at) VALUES (10,' José ',35,'0001234','luis@gmail.com',CURRENT_TIMESTAMP);
+INSERT INTO Usuarios (id,nombre,edad,telefono,email,created_at) VALUES (10,'Luis  ',75,'12345678','sanfiel@gmail.com',CURRENT_TIMESTAMP);
+INSERT INTO Usuarios (id,nombre,edad,telefono,email,created_at) VALUES (10,'Antonio ',15,'12345678','antonio@gmail.com',CURRENT_TIMESTAMP);
+INSERT INTO Usuarios (id,nombre,edad,telefono,email,created_at) VALUES (10,'Jorge ',85,'12345678','luisjorge@gmail.com',CURRENT_TIMESTAMP);
+
