@@ -18,8 +18,8 @@ class ProductoController extends Controller
     {
         // Devolverá todos los productos
         //$categorias = Categoria::get();
-        // $productos = Producto::simplePaginate(4);
-        $productos = Producto::paginate(4);
+        //$productos = Producto::get();
+        $productos = Producto::paginate(5);
         //Asignar a la vista el listado de productos de la base de datos
         return view('productos.index')->with('productos', $productos);
     }

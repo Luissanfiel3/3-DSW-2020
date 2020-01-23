@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-    <title>Hello, world!</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Luis CRUD</title>
 </head>
 
 <body>
@@ -30,7 +31,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/categorias')}}">Categorías</a>
                     </li>
-                </ul>
+                </ul>            
+
             </ul>
         </div>
     </nav>
@@ -38,7 +40,7 @@
     <!-- <div class="container-fluid"> -->
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12 col-md-offset-1">
                 <!-- Aquí incluiremos el contenido de nuestra aplicación -->
                 @yield('content')
             </div>
