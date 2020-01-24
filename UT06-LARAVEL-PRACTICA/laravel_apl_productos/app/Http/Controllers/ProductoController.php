@@ -36,32 +36,60 @@ class ProductoController extends Controller
         return view('productos.show')->with('producto', $producto);
     }
 
-    public function create($product)
+    public function store(Request $request)
     {
-        // Vista update.blade.php
-        $producto = Producto::find($product);
+        $productos =  new Producto();
+        if (!empty($productos)) {
+            $id = $request->producto_id;
+            $name = $request->nombre;
+            $descripcion = $request->descripcion;
+            $active = $request->activo;
+            $cat = $request->categoria;
 
-        return view('productos.create')->with('producto', $producto);
+            $productos->nombre = $name;
+            $productos->descripcion = $descripcion;
+            $productos->esactivo = $active;
+            $productos->categoria_id = $cat;
+           // $productos->created_at;
+            //$productos->updated_at;
+
+            $productos->save();
+        }
+
+        return back();  
     }
 
 
+
+    // Method of insecting data
     public function update(Request $request)
     {
         //dd($request->all());
-        $productos = Producto::findOrFail($request->producto_id);
-       // findOrFail
-        $productos->update($request->all());
-        //$category->update($request->all());
+        $productos = Producto::find($request->producto_id);
+        if (!empty($productos)) {
+            $id = $request->producto_id;
+            $name = $request->nombre;
+            $descripcion = $request->descripcion;
+            $active = $request->activo;
+            $cat = $request->categoria;
+
+            $productos->nombre = $name;
+            $productos->descripcion = $descripcion;
+            $productos->esactivo = $active;
+            $productos->categoria_id = $cat;
+            $productos->created_at;
+            $productos->updated_at;
+
+            $productos->save();
+        }
         return back();
-        // Vista update.blade.php
-        // $producto = Producto::find($IdProducto);
-        // return view('productos.show')->with('producto', $producto);
     }
 
-    public function destroy($IdProducto)
+    public function destroy(Request $request)
     {
-        // Hacer diálogo de confirmación
-        $producto = Producto::find($IdProducto);
-        return view('productos.show')->with('producto', $producto);
+        $producto = Producto::findOrFail($request->producto_id);
+        $producto->delete();
+
+        return back();
     }
 }

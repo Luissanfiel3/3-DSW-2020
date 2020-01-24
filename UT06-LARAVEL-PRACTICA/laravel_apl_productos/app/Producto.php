@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    protected $fillable = [
-        'id','nombre','descripcion'
-    ];
+   // protected $fillable = ['producto_id', 'nombre','descripcion','esactivo','cat'];
+    // protected $guarded = ['producto_id', 'name','desc','activo','categoria'];
     public function categoria()
     {
         // 1er argumento: modelo
