@@ -29,7 +29,7 @@ class ProductoController extends Controller
      * @param $IdProducto
      * @return Response
      */
-     public function show($IdProducto)
+    public function show($IdProducto)
     {
         // Devuelve el producto seleccionada por id.
         $producto = Producto::find($IdProducto);
@@ -41,15 +41,21 @@ class ProductoController extends Controller
         // Vista update.blade.php
         $producto = Producto::find($product);
 
-        return view('productos.create')->with('producto',$producto);
+        return view('productos.create')->with('producto', $producto);
     }
 
 
-    public function update($IdProducto)
+    public function update(Request $request)
     {
+        //dd($request->all());
+        $productos = Producto::findOrFail($request->producto_id);
+       // findOrFail
+        $productos->update($request->all());
+        //$category->update($request->all());
+        return back();
         // Vista update.blade.php
-        $producto = Producto::find($IdProducto);
-        return view('productos.show')->with('producto', $producto);
+        // $producto = Producto::find($IdProducto);
+        // return view('productos.show')->with('producto', $producto);
     }
 
     public function destroy($IdProducto)
