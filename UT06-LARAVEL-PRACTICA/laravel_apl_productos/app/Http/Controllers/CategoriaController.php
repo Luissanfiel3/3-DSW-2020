@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Categoria;
@@ -26,4 +27,54 @@ class CategoriaController extends Controller
         return view('categorias.show')->with('categorias', $categorias);
     }
 
+    public function store(Request $request)
+    {
+        $categorias =  new Categoria();
+        if (!empty($categorias)) {
+            $name = $request->nombre;
+            $descripcion = $request->descripcion;
+
+            $categorias->nombre = $name;
+            $categorias->descripcion = $descripcion;
+            $categorias->save();
+        }
+        return back();
+    }
+
+
+    // Method of inserting data
+    public function update(Request $request)
+    {
+        //dd($request->all());
+        $categorias = Categoria::find($request->categoria_id);
+        if (!empty($categorias)) {
+            //$id = $request->categoria_id;
+            $name = $request->nombre;
+            $descripcion = $request->descripcion;
+
+            $categorias->nombre = $name;
+            $categorias->descripcion = $descripcion;
+
+
+            $categorias->save();
+        }
+        return back();
+    }
+
+    /**
+     * Delete category
+     */
+    public function destroy(Request $request)
+    {
+
+        $categoria = "";
+        $id = $request->categoria_id;
+        if (!empty($id)) {
+            $categoria = Categoria::where('id', $id);
+            $categoria->delete();
+        } else {
+            $echo = "Error when deleting the user ";
+        }
+        return back();
+    }
 }

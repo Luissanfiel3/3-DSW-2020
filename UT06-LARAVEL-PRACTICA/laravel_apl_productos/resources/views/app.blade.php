@@ -26,11 +26,11 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/productos') }}">Productos</a>
+                    <a class="nav-link" href="{{ url('/productos') }}">Products</a>
                 </li>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/categorias')}}">Categorías</a>
+                        <a class="nav-link" href="{{ url('/categorias')}}">Categories</a>
                     </li>
                 </ul>
             </ul>
@@ -41,26 +41,27 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-md-offset-3">
+            <div class="col-md-12 col-md-offset-3 ">
                 <!-- Aquí incluiremos el contenido de nuestra aplicación -->
                 @yield('content')
+                
             </div>
         </div>
     </div>
 
-    
+
 
     <script type="text/javascript">
-    // Change values for to edit
-        $('#editModal').on('show.bs.modal', function(event) {           
+        // Load values  to edit Products
+        $('#editModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var prodid = button.data('idproduct')
             var nombre = button.data('name')
             var descripcion = button.data('mydescription')
             var esactivo = button.data('activo')
             var cat = button.data('catid')
-            
-             console.log(cat);
+
+            console.log(cat);
 
             var modal = $(this)
             modal.find('.modal-body #prod_id').val(prodid);
@@ -70,7 +71,36 @@
             modal.find('.modal-body #cat').val(cat);
         })
 
+        // load id to delete products
+        $('#deleteModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var prodid = button.data('idproduct');
+            var modal = $(this)
+            modal.find('.modal-body #del_id').val(prodid);
 
+        })
+
+        // Load values  to edit Categories
+        $('#editcatModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var cartId = button.data('idcat')
+            var nombre = button.data('name')
+            var descripcion = button.data('mydescription')
+        
+            var modal = $(this)
+            modal.find('.modal-body #cat_id').val(cartId);
+            modal.find('.modal-body #name').val(nombre);
+            modal.find('.modal-body #desc').val(descripcion);
+        })
+
+        // load id to delete products
+        $('#deletecatModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var catId = button.data('idcat');
+            var modal = $(this)
+            modal.find('.modal-body #del_id').val(catId);
+
+        })
     </script>
 
     <!-- </div> -->

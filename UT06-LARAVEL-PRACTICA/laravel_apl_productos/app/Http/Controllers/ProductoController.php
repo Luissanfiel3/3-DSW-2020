@@ -12,35 +12,34 @@ use Illuminate\Pagination\LengthAwarePaginatorsimplePaginateIlluminate\Paginatio
 
 class ProductoController extends Controller
 {
-    //
+    //CRUD methods product
 
     public function index()
     {
-        // Devolverá todos los productos
-        //$categorias = Categoria::get();
-        //$productos = Producto::get();
         $productos = Producto::paginate(5);
         //Asignar a la vista el listado de productos de la base de datos
         return view('productos.index')->with('productos', $productos);
     }
 
     /**
-     * Muestra la moneda seleccionada por id.
+     * Show a product selected by id.
      * @param $IdProducto
      * @return Response
      */
     public function show($IdProducto)
     {
-        // Devuelve el producto seleccionada por id.
         $producto = Producto::find($IdProducto);
         return view('productos.show')->with('producto', $producto);
     }
 
+    /**
+     * Create product
+     */
     public function store(Request $request)
     {
         $productos =  new Producto();
         if (!empty($productos)) {
-            $id = $request->producto_id;
+           // $id = $request->producto_id;
             $name = $request->nombre;
             $descripcion = $request->descripcion;
             $active = $request->activo;
@@ -50,18 +49,14 @@ class ProductoController extends Controller
             $productos->descripcion = $descripcion;
             $productos->esactivo = $active;
             $productos->categoria_id = $cat;
-           // $productos->created_at;
-            //$productos->updated_at;
-
             $productos->save();
         }
-
-        return back();  
+        return back();
     }
 
 
 
-    // Method of insecting data
+    // Method of inserting data
     public function update(Request $request)
     {
         //dd($request->all());
@@ -85,11 +80,21 @@ class ProductoController extends Controller
         return back();
     }
 
+    /**
+     * Delete product
+     */
     public function destroy(Request $request)
     {
-        $producto = Producto::findOrFail($request->producto_id);
-        $producto->delete();
-
-        return back();
+        // $producto = Producto::findOrFail($request->producto_id);
+        $producto="";
+        $id = $request->producto_id;
+        if (!empty($id)) {
+            $producto = Producto::where('id', $id);
+            $producto->delete();
+            $message = "Correctly deleted product";
+        } else {
+            $message = "Error when deleting the user ";
+        }
+        return view('productos.index')->with('message', $message);
     }
 }
